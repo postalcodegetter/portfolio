@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Roland Oosthuizen — Developer, exploring</title>
+  <meta name="description" content="Junior developer at Orka Solar working in a live React codebase. Client websites, a trading research system and a video automation bot. Scroll to fly through the work, or switch to the quick-read view.">
+  <meta name="theme-color" content="#0a0a0b">
+  <meta name="color-scheme" content="dark">
+  <meta property="og:title" content="Roland Oosthuizen — Developer, exploring">
+  <meta property="og:description" content="A small universe of things I've built. Quick-read view available.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    document.documentElement.classList.add("js");
+    try {
+      if (localStorage.getItem("view") === "plain" || /[?&]plain/.test(location.search)) document.documentElement.classList.add("plain");
+    } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <radialGradient id="g-sun" cx=".35" cy=".35" r=".8"><stop class="st-sun-hi" offset="0"/><stop class="st-sun-lo" offset="1"/></radialGradient>
+      <radialGradient id="g-ice" cx=".35" cy=".35" r=".8"><stop class="st-ice-hi" offset="0"/><stop class="st-ice-lo" offset="1"/></radialGradient>
+      <radialGradient id="g-rust" cx=".35" cy=".35" r=".8"><stop class="st-rust-hi" offset="0"/><stop class="st-rust-lo" offset="1"/></radialGradient>
+      <radialGradient id="g-moss" cx=".35" cy=".35" r=".8"><stop class="st-moss-hi" offset="0"/><stop class="st-moss-lo" offset="1"/></radialGradient>
+      <radialGradient id="g-haze" cx=".35" cy=".35" r=".8"><stop class="st-haze-hi" offset="0"/><stop class="st-haze-lo" offset="1"/></radialGradient>
+    </defs>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v16M6 14l6 6 6-6"/></symbol>
+    <symbol id="i-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
+  </svg>
+
+  <a class="skip" href="#main">Skip to content</a>
+
+  <canvas id="space" aria-hidden="true"></canvas>
+  <div class="nebula" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="topbar__brand" href="#launch"><span class="topbar__full">Roland Oosthuizen</span><span class="topbar__short">Roland O.</span></a>
+    <div class="hud" aria-hidden="true">
+      <span class="hud__sector" id="hud-sector">Sector 00 · Launch</span>
+      <span class="hud__dist"><span id="hud-dist">0.0</span> ly travelled</span>
+    </div>
+    <div class="topbar__actions">
+      <button class="btn btn--ghost" type="button" id="view-toggle" aria-pressed="false">
+        <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-bolt"/></svg><span id="view-label">Quick read</span>
+      </button>
+      <button class="btn btn--ghost btn--icon" type="button" id="map-btn" aria-expanded="false" aria-controls="starmap" aria-label="Open star map">
+        <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-map"/></svg>
+      </button>
+      <a class="btn btn--ghost topbar__cv" href="assets/cv.pdf" download>CV <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-down"/></svg></a>
+      <a class="btn btn--primary" href="#signal">Contact</a>
+    </div>
+  </header>
+
+  <nav class="map" id="starmap" aria-label="Star map">
+    <a href="#launch" data-name="Launch"><i></i><span>Launch</span></a>
+    <a href="#home" data-name="Home base"><i></i><span>Home base</span></a>
+    <a href="#orka" data-name="Orka Solar"><i></i><span>Orka Solar</span></a>
+    <a href="#market" data-name="Smart Market AI"><i></i><span>Smart Market AI</span></a>
+    <a href="#reels" data-name="The Reels Bot"><i></i><span>The Reels Bot</span></a>
+    <a href="#clients" data-name="Client worlds"><i></i><span>Client worlds</span></a>
+    <a href="#chart" data-name="Star chart"><i></i><span>Star chart</span></a>
+    <a href="#log" data-name="Flight log"><i></i><span>Flight log</span></a>
+    <a href="#signal" data-name="Send a signal"><i></i><span>Send a signal</span></a>
+  </nav>
+
+  <div class="progress" aria-hidden="true"></div>
+
+  <main id="main">
+
+    <!-- 00 LAUNCH -->
+    <section class="stop hero" id="launch" data-sector="Launch" data-i="0">
+      <div class="wrap">
+        <p class="mono reveal">Portfolio &nbsp;/&nbsp; Orka Solar &nbsp;/&nbsp; NWU</p>
+        <h1 class="display">
+          <span class="line"><span style="--i:0">Hi, I'm Roland.</span></span>
+          <span class="line"><span style="--i:1"><em>Come and explore.</em></span></span>
+        </h1>
+        <p class="lead reveal" style="--i:3">I'm a junior developer. I work in a live React codebase at Orka Solar, build websites for clients, and make things on the side that I'm curious about. Scroll to fly through them, or <button class="linkbtn" type="button" data-toggle-view>switch to the quick-read view</button> if you'd rather see it all on one page.</p>
+        <div class="cta reveal" style="--i:4">
+          <a class="btn btn--primary" href="#home" data-magnetic>Start the tour <span class="arr"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-down"/></svg></span></a>
+          <a class="btn" href="assets/cv.pdf" download data-magnetic>Download CV <span class="arr"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-down"/></svg></span></a>
+        </div>
+        <div class="proof reveal" style="--i:5" role="list">
+          <div role="listitem"><b data-count="3" data-suffix="+">0</b><span>years building for real clients</span></div>
+          <div role="listitem"><b data-count="1">0</b><span>live production React codebase, daily</span></div>
+          <div role="listitem"><b data-count="58">0</b><span>engineered features in my ML pipeline</span></div>
+          <div role="listitem"><b data-count="5">0</b><span>automated audits before a model is trusted</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="flight" data-to="home" aria-hidden="true"><div class="flight__label"><span class="mono">Warp 01</span><b>Flying to Home base</b><i class="flight__bar"></i></div></div>
+
+    <!-- 01 HOME BASE -->
+    <section class="stop stop--left" id="home" data-sector="Home base" data-i="1">
+      <div class="arrival">
+        <div class="arrival__text">
+          <p class="mono reveal"><b>01</b> · Home base</p>
+          <h2 class="display reveal">A bit about <em>me</em>.</h2>
+        </div>
+        <button class="planet" type="button" data-say="Hi! Thanks for stopping by.">
+          <span class="bubble" role="status"></span>
+        </button>
+      </div>
+
+      <div class="card card--about reveal">
+        <div class="about">
+          <figure class="photo">
+            <div class="photo__ph" aria-hidden="true">
+              <svg viewBox="0 0 120 120"><circle cx="60" cy="46" r="20"/><path d="M20 112c4-26 20-38 40-38s36 12 40 38"/></svg>
+              <span class="mono">Your photo here</span>
+            </div>
+            <img src="assets/roland.jpg" alt="Portrait of Roland Oosthuizen" width="480" height="600" loading="lazy" hidden>
+          </figure>
+          <div class="about__text">
+            <h3 class="card__title">Hello, I'm Roland.</h3>
+            <p>I'm a junior developer and a first-year Computer Science &amp; Economics student at NWU. I started building websites for clients in 2023, and I've spent the years since learning the parts that don't show up in screenshots: hosting, SSL, search indexing and page speed.</p>
+            <p>Since July I've worked at Orka Solar, shipping interface work in a React codebase and helping with cable-routing designs. Outside of work I build things I'm curious about, like a trading research system that tests itself and a bot that makes short videos on its own.</p>
+            <p>I like problems where being careful pays off, and I like explaining what I've built in plain words.</p>
+            <div class="fact">
+              <button class="btn" type="button" id="fact-btn">Beam me a fun fact <span class="arr"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-right"/></svg></span></button>
+              <p class="fact__text" id="fact-text" aria-live="polite">Press the button for a signal from home.</p>
+            </div>
+          </div>
+        </div>
+        <div class="now">
+          <h3 class="mono">Currently</h3>
+          <ul class="points">
+            <li><strong>Working</strong> on interface and feature work in Orka Solar's React system.</li>
+            <li><strong>Studying</strong> Computer Science &amp; Economics at North-West University.</li>
+            <li><strong>Learning</strong> how to test trading models honestly, and building tools to do it.</li>
+            <li><strong>Tinkering</strong> with this portfolio, which is a small universe on purpose.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="flight" data-to="orka" aria-hidden="true"><div class="flight__label"><span class="mono">Warp 02</span><b>Flying to Orka Solar</b><i class="flight__bar"></i></div></div>
+
+    <!-- 02 ORKA -->
+    <section class="stop stop--right" id="orka" data-sector="Orka Solar" data-i="2">
+      <div class="arrival">
+        <div class="arrival__text">
+          <p class="mono reveal"><b>02</b> · Orka Solar · Jul 2026 — now</p>
+          <h2 class="display reveal">Software that has to match <em>real engineering</em>.</h2>
+        </div>
+        <button class="planet planet--sun" type="button" data-say="A sun, for a solar company. I couldn't resist.">
+          <span class="bubble" role="status"></span>
+        </button>
+      </div>
+
+      <div class="card reveal">
+        <p class="card__intro">I joined as a junior developer and work on two fronts: shipping UI in the company's React system, and doing the electrical design support the software exists to serve. Understanding both sides is the part I'm most glad to be learning.</p>
+        <div class="grid2" data-stagger>
+          <article class="cell reveal">
+            <span class="mono">React · JSX / TSX</span>
+            <h3>In-house production system</h3>
+            <p>Contributing directly to a live codebase: fixing bugs, shipping day-to-day UI improvements, and building new feature templates as the system grows.</p>
+          </article>
+          <article class="cell reveal">
+            <span class="mono">Design · Site planning</span>
+            <h3>3D cable-routing layouts</h3>
+            <p>Producing 3D layouts of cable routes to support system design and site planning, so runs are worked out before anyone is on site.</p>
+          </article>
+          <article class="cell reveal">
+            <span class="mono">Electrical · Engineering</span>
+            <h3>Cable derating</h3>
+            <p>Working through cable derating so planned cable runs are rated correctly for their installation conditions, not just on paper.</p>
+          </article>
+          <article class="cell reveal">
+            <span class="mono">Data · ERP</span>
+            <h3>Load-profile data</h3>
+            <p>Processing and uploading site load-profile data into the company's ERP, keeping the numbers clean for the people who depend on them.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="flight" data-to="market" aria-hidden="true"><div class="flight__label"><span class="mono">Warp 03</span><b>Flying to Smart Market AI</b><i class="flight__bar"></i></div></div>
+
+    <!-- 03 SMART MARKET AI -->
+    <section class="stop stop--left" id="market" data-sector="Smart Market AI" data-i="3">
+      <div class="arrival">
+        <div class="arrival__text">
+          <p class="mono reveal"><b>03</b> · Independent project</p>
+          <h2 class="display reveal">Smart Market AI, <em>built to doubt itself</em>.</h2>
+        </div>
+        <button class="planet planet--ring" type="button" data-say="I try to prove my models wrong before anyone else can.">
+          <span class="bubble" role="status"></span>
+        </button>
+      </div>
+
+      <div class="card card--wide reveal">
+        <header class="project__head">
+          <ul class="tags"><li>Python</li><li>scikit-learn</li><li>pandas</li><li>SQLite</li><li>Streamlit</li><li>Plotly</li></ul>
+          <a class="tlink" href="https://github.com/postalcodegetter/smart-market-ai" rel="noopener">View on GitHub <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up-right"/></svg></a>
+        </header>
+        <div class="project__cols">
+          <div>
+            <dl class="story">
+              <div><dt class="mono">The problem</dt><dd>Most trading backtests flatter themselves. I wanted a system whose main job is to find out, honestly, <strong>whether a model actually works</strong>, and to refuse to certify it when it doesn't.</dd></div>
+              <div><dt class="mono">What I built</dt><dd>An end-to-end ML research system for systematic equity signals, with walk-forward validation, a held-out final test the model never sees during tuning, and a deployability gate with explicit thresholds.</dd></div>
+            </dl>
+            <ul class="points" style="margin-top: var(--s-4)">
+              <li><strong>Walk-forward pipeline</strong> comparing logistic regression, random forest, gradient boosting and an ensemble across 58 engineered technical and market features.</li>
+              <li><strong>Regime-aware routing:</strong> separate specialist models for bull, bear, high-volatility, mean-reversion and neutral conditions.</li>
+              <li><strong>Five-part audit suite</strong> on every training pass: feature redundancy, temporal stability, probability calibration, concentration, and Monte Carlo trade-shuffle robustness.</li>
+              <li><strong>Overfitting defences:</strong> purged walk-forward CV with embargo and a deflated Sharpe gate that accounts for the 91 threshold configurations tried.</li>
+              <li><strong>Risk controls:</strong> ATR-scaled stops and targets, sector and daily trade caps, an equity drawdown breaker, loss cooldowns.</li>
+              <li><strong>Closed loop:</strong> logs live predictions to SQLite, checks real forward outcomes, and feeds them back into a pattern memory.</li>
+              <li><strong>Trading-terminal UI:</strong> rebuilt the default Streamlit layout into a single-file dashboard with candlesticks, correlation matrices, sector treemaps and equity/drawdown curves, leaving every backend function untouched.</li>
+            </ul>
+          </div>
+          <div class="panel" aria-label="Diagram of walk-forward validation with a held-out final test">
+            <div class="panel__cap mono"><span>How it tests itself</span><span>illustrative</span></div>
+            <svg class="wf" viewBox="0 0 560 250" role="img" aria-label="Five walk-forward folds with growing training windows, followed by a held-out final test period the model never sees while tuning">
+              <rect class="held-fill" x="440" y="8" width="112" height="196"/>
+              <rect class="held" x="440" y="8" width="112" height="196"/>
+              <g>
+                <rect class="bar train" style="--i:0" x="0" y="20"  width="150" height="22"/><rect class="bar test" style="--i:1" x="154" y="20"  width="50" height="22"/>
+                <rect class="bar train" style="--i:1" x="0" y="58"  width="204" height="22"/><rect class="bar test" style="--i:2" x="208" y="58"  width="50" height="22"/>
+                <rect class="bar train" style="--i:2" x="0" y="96"  width="258" height="22"/><rect class="bar test" style="--i:3" x="262" y="96"  width="50" height="22"/>
+                <rect class="bar train" style="--i:3" x="0" y="134" width="312" height="22"/><rect class="bar test" style="--i:4" x="316" y="134" width="50" height="22"/>
+                <rect class="bar train" style="--i:4" x="0" y="172" width="366" height="22"/><rect class="bar test" style="--i:5" x="370" y="172" width="50" height="22"/>
+              </g>
+              <rect class="key-train" x="0" y="218" width="12" height="12"/><text x="18" y="229">TRAIN</text>
+              <rect class="key-test" x="90" y="218" width="12" height="12"/><text x="108" y="229">VALIDATE</text>
+              <text x="556" y="224" class="accent-text end">HELD-OUT TEST</text>
+              <text x="556" y="242" class="end">NEVER TUNED ON</text>
+            </svg>
+            <div class="gate">
+              <div><b>Accuracy</b>above threshold</div>
+              <div><b>Profit factor</b>above threshold</div>
+              <div><b>Drawdown</b>below threshold</div>
+            </div>
+            <p class="mono" style="margin: var(--s-3) 0 0">A model is only “deployable” if it clears all three on data it never saw.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="flight" data-to="reels" aria-hidden="true"><div class="flight__label"><span class="mono">Warp 04</span><b>Flying to The Reels Bot</b><i class="flight__bar"></i></div></div>
+
+    <!-- 04 REELS BOT -->
+    <section class="stop stop--right" id="reels" data-sector="The Reels Bot" data-i="4">
+      <div class="arrival">
+        <div class="arrival__text">
+          <p class="mono reveal"><b>04</b> · Independent project</p>
+          <h2 class="display reveal">A bot that makes <em>short videos on its own</em>.</h2>
+        </div>
+        <button class="planet planet--moon" type="button" data-say="It can publish a Reel while I'm asleep.">
+          <span class="bubble" role="status"></span>
+        </button>
+      </div>
+
+      <div class="card card--wide reveal">
+        <header class="project__head">
+          <ul class="tags"><li>Python</li><li>Groq LLM</li><li>Google Cloud TTS</li><li>MoviePy / FFmpeg</li><li>Pillow</li><li>Instagram Graph API</li></ul>
+          <a class="tlink" href="https://github.com/postalcodegetter/reels-bot" rel="noopener">View on GitHub <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up-right"/></svg></a>
+        </header>
+        <div class="project__cols">
+          <div>
+            <dl class="story">
+              <div><dt class="mono">The problem</dt><dd>Producing vertical video is slow, repetitive, manual work. I wanted to see how much of it could run with <strong>no human in the loop</strong>.</dd></div>
+              <div><dt class="mono">What I built</dt><dd>A bot that sources content, rewrites it with an LLM, narrates and captions it, renders the video, and publishes it as an Instagram Reel on its own.</dd></div>
+            </dl>
+            <ul class="points" style="margin-top: var(--s-4)">
+              <li><strong>Captions locked to speech:</strong> SSML timing marks from Google TTS drive caption timing exactly, rather than guessing word durations.</li>
+              <li><strong>Custom rendering:</strong> animated, emoji-aware captions drawn with Pillow and composited programmatically with MoviePy and FFmpeg.</li>
+              <li><strong>Content screening:</strong> RSS ingestion, HTML cleanup, a blocklist for sensitive topics, de-duplication of used stories, and a sanitiser that strips LLM meta-commentary from the script.</li>
+              <li><strong>Built to fail gracefully:</strong> if the LLM call fails, a local rewriter takes over; uploads retry with back-off before the run gives up.</li>
+              <li><strong>Several formats</strong> from one codebase: long-form narrated stories and short caption-only clips, each with its own prompt and layout.</li>
+            </ul>
+          </div>
+          <div class="panel" aria-label="Pipeline stages">
+            <div class="panel__cap mono"><span>One run, end to end</span><span>7 stages</span></div>
+            <ol class="pipe">
+              <li><div><b>Ingest</b><small>RSS feeds parsed, HTML stripped</small></div></li>
+              <li><div><b>Screen</b><small>Blocklist, length and duplicate checks</small></div></li>
+              <li><div><b>Rewrite</b><small>Groq LLM with a custom system prompt, output sanitised</small></div></li>
+              <li><div><b>Narrate</b><small>Google Cloud TTS with SSML marks</small></div></li>
+              <li><div><b>Render</b><small>MoviePy / FFmpeg, 1080×1920, synced captions</small></div></li>
+              <li><div><b>Upload</b><small>Cloudinary with retry and error handling</small></div></li>
+              <li><div><b>Publish</b><small>Instagram Graph API container, wait, publish</small></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="flight" data-to="clients" aria-hidden="true"><div class="flight__label"><span class="mono">Warp 05</span><b>Flying to Client worlds</b><i class="flight__bar"></i></div></div>
+
+    <!-- 05 CLIENT WORLDS -->
+    <section class="stop stop--left" id="clients" data-sector="Client worlds" data-i="5">
+      <div class="arrival">
+        <div class="arrival__text">
+          <p class="mono reveal"><b>05</b> · Freelance · 2023 — now</p>
+          <h2 class="display reveal">Websites <em>real people use</em>.</h2>
+        </div>
+        <button class="planet planet--moons" type="button" data-say="Real clients, real domains, real SSL certificates.">
+          <span class="bubble" role="status"></span>
+        </button>
+      </div>
+
+      <div class="card reveal">
+        <p class="card__intro">Three years of freelance work taught me the unglamorous half of the job: domains, hosting, SSL, indexing, speed, and keeping a client's site working after launch.</p>
+        <ul class="tags" style="margin-bottom: var(--s-4)"><li>WordPress</li><li>WooCommerce</li><li>HTML / CSS</li><li>Technical SEO</li><li>Hosting &amp; SSL</li></ul>
+        <div class="sites">
+          <a class="site" href="https://housey.co.za" rel="noopener" target="_blank">
+            <div><h4>Housey</h4><p>Modern, mobile-first responsive site. Built the SEO structure, improved search visibility and tuned load times across devices.</p></div>
+            <span class="mono go">housey.co.za <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up-right"/></svg></span>
+          </a>
+          <a class="site" href="https://drillpointafrica.co.za" rel="noopener" target="_blank">
+            <div><h4>Drillpoint Africa</h4><p>Corporate site built and deployed with full hosting and SSL setup, plus sitemap submission, Search Console integration and crawlability fixes.</p></div>
+            <span class="mono go">drillpointafrica.co.za <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up-right"/></svg></span>
+          </a>
+          <div class="site">
+            <div><h4>WooCommerce stores</h4><p>Online shops with structured product categories and filtering, with layouts and checkout flow customised for usability and conversion.</p></div>
+            <span class="mono">E-commerce</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="flight" data-to="chart" aria-hidden="true"><div class="flight__label"><span class="mono">Warp 06</span><b>Flying to Star chart</b><i class="flight__bar"></i></div></div>
+
+    <!-- 06 STAR CHART -->
+    <section class="stop stop--right" id="chart" data-sector="Star chart" data-i="6">
+      <div class="arrival">
+        <div class="arrival__text">
+          <p class="mono reveal"><b>06</b> · Toolbox</p>
+          <h2 class="display reveal">What I <em>reach for</em>.</h2>
+        </div>
+        <button class="planet planet--chart" type="button" data-say="Every star here is something I've used in a real project.">
+          <span class="bubble" role="status"></span>
+        </button>
+      </div>
+
+      <div class="card reveal">
+        <div class="stack" data-stagger>
+          <div class="reveal"><h3 class="mono">Front-end</h3><ul><li>React (JSX / TSX)</li><li>JavaScript</li><li>HTML5</li><li>CSS3</li><li>WordPress</li><li>WooCommerce</li></ul></div>
+          <div class="reveal"><h3 class="mono">SEO &amp; performance</h3><ul><li>Technical SEO</li><li>On-page SEO</li><li>Search Console</li><li>Sitemaps</li><li>Site-speed tuning</li></ul></div>
+          <div class="reveal"><h3 class="mono">Data &amp; ML</h3><ul><li>Python</li><li>pandas</li><li>NumPy</li><li>scikit-learn</li><li>SQLite</li><li>Streamlit</li><li>Plotly</li></ul></div>
+          <div class="reveal"><h3 class="mono">Automation &amp; APIs</h3><ul><li>LLM APIs (Groq)</li><li>Google Cloud TTS</li><li>MoviePy / FFmpeg</li><li>Pillow</li><li>Cloudinary</li><li>Instagram Graph API</li></ul></div>
+          <div class="reveal"><h3 class="mono">Infrastructure</h3><ul><li>Hosting</li><li>Domains</li><li>SSL</li><li>Git &amp; GitHub</li><li>Netlify</li></ul></div>
+          <div class="reveal"><h3 class="mono">Engineering context</h3><ul><li>3D cable routing</li><li>Cable derating</li><li>ERP data management</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="flight" data-to="log" aria-hidden="true"><div class="flight__label"><span class="mono">Warp 07</span><b>Flying to Flight log</b><i class="flight__bar"></i></div></div>
+
+    <!-- 07 FLIGHT LOG -->
+    <section class="stop stop--left" id="log" data-sector="Flight log" data-i="7">
+      <div class="arrival">
+        <div class="arrival__text">
+          <p class="mono reveal"><b>07</b> · Path</p>
+          <h2 class="display reveal">Where I've <em>been</em>.</h2>
+        </div>
+        <button class="planet planet--orbit" type="button" data-say="Still in orbit: always learning something.">
+          <span class="bubble" role="status"></span>
+        </button>
+      </div>
+
+      <div class="card reveal">
+        <div class="row">
+          <span class="mono">Jul 2026 — now</span>
+          <div><h3>Junior Developer</h3><p class="org">Orka Solar</p>
+            <ul class="points">
+              <li>Contribute to a live React (JSX / TSX) production system: bug fixes, UI improvements, new feature templates.</li>
+              <li>Produce 3D cable-routing layouts and cable derating work for system and site planning.</li>
+              <li>Process and upload site load-profile data into the company ERP.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <span class="mono">2023 — now</span>
+          <div><h3>Freelance Web Developer &amp; SEO</h3><p class="org">Self-employed</p>
+            <ul class="points">
+              <li>Design and build responsive WordPress and custom HTML/CSS sites, and WooCommerce stores.</li>
+              <li>Own SEO setup, hosting, domains, SSL, speed and ongoing maintenance for client sites.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <span class="mono">In progress</span>
+          <div><h3>BSc Computer Science &amp; Economics</h3><p class="org">North-West University, first year</p>
+            <p class="quiet">The two engineering projects above were built on my own time, outside coursework and client work.</p>
+          </div>
+        </div>
+        <div class="row">
+          <span class="mono">Grade 9 — 12</span>
+          <div><h3>Chess captain, three years</h3><p class="org">HS Ferdinand Postma · matric in Maths, Physics &amp; Life Sciences</p>
+            <p class="quiet">Captained the school team for three consecutive years, plus four years of drama. Strategy under pressure, and being comfortable in front of people.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="flight" data-to="signal" aria-hidden="true"><div class="flight__label"><span class="mono">Warp 08</span><b>Flying to Send a signal</b><i class="flight__bar"></i></div></div>
+
+    <!-- 08 SIGNAL -->
+    <section class="stop stop--right stop--last" id="signal" data-sector="Send a signal" data-i="8">
+      <div class="arrival">
+        <div class="arrival__text">
+          <p class="mono reveal"><b>08</b> · Contact</p>
+          <h2 class="display reveal">Send a <em>signal</em>.</h2>
+        </div>
+        <button class="planet planet--beacon" type="button" data-say="Signal received. I read every message.">
+          <span class="bubble" role="status"></span>
+        </button>
+      </div>
+
+      <div class="card card--wide reveal">
+        <div class="contact__grid">
+          <div class="direct">
+            <p class="card__intro" style="margin:0">Hiring for a junior, front-end or full-stack role, or have a site that needs building? I'll get back to you promptly.</p>
+            <a class="big" href="mailto:rolandoosthuizen09@gmail.com">rolandoosthuizen09@gmail.com</a>
+            <a class="tlink" href="assets/cv.pdf" download>Download CV (PDF) <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-down"/></svg></a>
+            <div class="inline">
+              <a class="tlink" href="https://github.com/postalcodegetter" rel="noopener">GitHub</a>
+              <a class="tlink" href="https://www.linkedin.com/in/roland-oosthuizen-b65541408" rel="noopener">LinkedIn</a>
+            </div>
+          </div>
+          <form class="form" name="contact" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contact">
+            <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+            <div class="field"><label class="mono" for="f-name">Name</label><input id="f-name" name="name" type="text" required autocomplete="name"></div>
+            <div class="field"><label class="mono" for="f-email">Email</label><input id="f-email" name="email" type="email" required autocomplete="email"></div>
+            <div class="field"><label class="mono" for="f-msg">Message</label><textarea id="f-msg" name="message" required></textarea></div>
+            <button class="btn btn--primary" type="submit" data-magnetic style="width:fit-content">Send message <span class="arr"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-right"/></svg></span></button>
+            <p class="form__msg" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+
+      <footer class="foot mono">
+        <span>© 2026 Roland Oosthuizen</span>
+        <span>Hand-built with HTML, CSS and a little JS. Hosted on Netlify.</span>
+      </footer>
+    </section>
+  </main>
+
+  <script src="assets/universe3d.js" defer></script>
+  <script src="script.js" defer></script>
+</body>
+</html>
